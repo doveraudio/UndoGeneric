@@ -130,10 +130,9 @@ namespace UndoGeneric
         /// <returns></returns>
         public bool AddItem(T item)
         {
-            string time = DateTime.UtcNow.TimeOfDay.ToString();
-            string date = DateTime.UtcNow.Date.ToString();
+            
             long maxBytes = maxMB * MEGABYTE;
-            UndoItem<T> undo = new UndoItem<T>(date, time, item);
+            UndoItem<T> undo = new UndoItem<T>(item);
             long targetSize = undo.Size + currentSize; ;
             if (checkSize)
             {
@@ -194,7 +193,7 @@ namespace UndoGeneric
         /// <value>
         /// The current.
         /// </value>
-        public T Current { get { return history[cursor].Value; } }
+        public UndoItem<T> Current { get { return history[cursor]; } }
 
         /// <summary>
         /// Gets the size.

@@ -27,7 +27,7 @@ namespace TestUndoGeneric
             PrintLn("Getting History");
             PrintLn("Latest Item");
 
-            List<string> current = history.Current;
+            List<string> current = history.Current.Value;
             PrintLn("Printing Item {0}:", history.Cursor.ToString());
             foreach (var item in current)
             {
@@ -43,7 +43,7 @@ namespace TestUndoGeneric
             PrintLn("-----------------");
             PrintLn("Changing Index to First");
             history.SetIndex(0);
-            current = history.Current;
+            current = history.Current.Value;
             PrintLn("Printing Item {0}:", history.Cursor.ToString());
             foreach (var item in current)
             {
@@ -72,7 +72,7 @@ namespace TestUndoGeneric
 
 
 
-            current = history.Current;
+            current = history.Current.Value;
             PrintLn("Printing Item {0}:", history.Cursor.ToString());
             foreach (var item in current)
             {
@@ -89,8 +89,8 @@ namespace TestUndoGeneric
             for (int i = 0; i < 15; i++)
             {
                 history.Up();
-                current = history.Current;
-                PrintLn("Printing Item {0}:", history.Cursor.ToString());
+                current = history.Current.Value;
+                PrintLn("Printing Item {0}: Time: {1} Date: {2};", history.Cursor.ToString(), history.Current.Time, history.Current.Date);
                 foreach (var item in current)
                 {
                     Print(item + ",");
@@ -107,8 +107,8 @@ namespace TestUndoGeneric
             for (int i = 0; i < 15; i++)
             {
                 history.Down();
-                current = history.Current;
-                PrintLn("Printing Item {0}:", history.Cursor.ToString());
+                current = history.Current.Value;
+                PrintLn("Printing Item {0}: Time: {1} Date: {2};", history.Cursor.ToString(), history.Current.Time, history.Current.Date);
                 foreach (var item in current)
                 {
                     Print(item + ",");
@@ -142,7 +142,16 @@ namespace TestUndoGeneric
 
             Console.WriteLine(Text, Value1);
         }
+        static void PrintLn(string Text, string Value1, string Value2)
+        {
 
+            Console.WriteLine(Text, Value1, Value2);
+        }
+        static void PrintLn(string Text, string Value1,string Value2, string Value3)
+        {
+
+            Console.WriteLine(Text, Value1, Value2, Value3);
+        }
         static void Print(string Text)
         {
             Console.Write(Text);
@@ -152,6 +161,16 @@ namespace TestUndoGeneric
         {
 
             Console.Write(Text, Value1);
+        }
+        static void Print(string Text, string Value1, string Value2)
+        {
+
+            Console.Write(Text, Value1, Value2);
+        }
+        static void Print(string Text, string Value1, string Value2, string Value3)
+        {
+
+            Console.Write(Text, Value1, Value2, Value3);
         }
         static void AnyKey()
         {

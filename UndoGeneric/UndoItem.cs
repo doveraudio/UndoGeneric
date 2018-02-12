@@ -21,8 +21,10 @@ namespace UndoGeneric
         /// <param name="date">The date.</param>
         /// <param name="time">The time.</param>
         /// <param name="value">The value.</param>
-        public UndoItem(string date, string time, T value)
+        public UndoItem(T value)
         {
+            string time = (DateTime.Now.ToLocalTime()).TimeOfDay.ToString();
+            string date = (DateTime.Now.ToLocalTime()).ToShortDateString();
             _date = date;
             _time = time;
             _value = value;
